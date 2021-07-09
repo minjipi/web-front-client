@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="lib-provided">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/WEB-INF/lib-provided/tomcat-embed-websocket-9.0.22.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WEB-INF/lib-provided/tomcat-embed-el-9.0.22.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WEB-INF/lib-provided/javax.annotation-api-1.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WEB-INF/lib-provided/spring-boot-starter-tomcat-2.1.7.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WEB-INF/lib-provided/tomcat-embed-core-9.0.22.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
