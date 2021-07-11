@@ -190,7 +190,7 @@
                 checkStatus();
             }
         };
-        httpRequest.open("POST", "http://192.168.1.103:32016/api/v1/order", true);
+        httpRequest.open("POST", "http://www.minzy-pansy.kro.kr:32016/api/v1/order", true);
         httpRequest.setRequestHeader("Content-Type", "application/json");
         console.log("{\"_id\":\"string\",\"orderName\":\"" + menu + "\",\"userId\":\"string\",\"userName\":\"" + document.getElementById('userName').value + "\"}");
         httpRequest.send("{\"_id\":\"string\",\"orderName\":\"" + menu + "\",\"userId\":\"string\",\"userName\":\"" + document.getElementById('userName').value + "\"}");
@@ -218,7 +218,7 @@
             }
         };
 
-        httpRequest.open("GET", "http://192.168.1.103:32016/api/v1/status", true);
+        httpRequest.open("GET", "http://www.minzy-pansy.kro.kr:32016/api/v1/status", true);
         httpRequest.setRequestHeader("Content-Type", "application/json");
         httpRequest.send();
 
