@@ -198,6 +198,7 @@
                     if (json.resultVO[result].orderId == order_id) {
                         console.log(json.resultVO[result].statusName);
                         if(json.resultVO[result].statusName==='DONE') {
+                            console.log(tid);
                             clearInterval(tid);
                             document.getElementById("status_text").innerText="완성☕️🐈";
                         }
