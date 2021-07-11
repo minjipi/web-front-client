@@ -169,14 +169,12 @@
         var httpRequest = new XMLHttpRequest();
         ordered.innerHTML = keep.innerHTML +  "<div class='section_x-slide-area'><ul><div class='notice'><div class='section_y-slide-area'><span id='status_text'>준비중☕…🐈</span><br></div></div></ul></div>";;
         keep.innerHTML = "<br>";
-
+        tid=setInterval(checkStatus,3000);
+        console.log("sendOrder()의 tid : " + tid);
         httpRequest.onreadystatechange = function () {
             if (httpRequest.readyState == XMLHttpRequest.DONE && httpRequest.status == 200) {
                 var json = JSON.parse(httpRequest.responseText);
                 order_id = json.resultVO._id;
-                tid=setInterval(checkStatus,3000);
-                console.log("sendOrder()의 tid : " + tid);
-
             }
         };
         httpRequest.open("POST", "http://www.minzy-pansy.kro.kr:32016/api/v1/order", true);
