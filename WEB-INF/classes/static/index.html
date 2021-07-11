@@ -94,7 +94,7 @@
     </div>
     <div>
         <span>전체보기<i class="icon-angle-right"></i></span>
-        <button id="order" class="order-button" onclick="checkMember()">주문하기</button>
+        <button id="order" class="order-button" onclick="sendOrder()">주문하기</button>
     </div>
 </section>
 
@@ -178,7 +178,7 @@
     //     console.log(menu);
     // };
 
-    function sendOrder(userId) {
+    function sendOrder() {
         var httpRequest = new XMLHttpRequest();
 
         httpRequest.onreadystatechange = function () {
@@ -190,35 +190,11 @@
         };
         httpRequest.open("POST", "http://192.168.1.103:32016/api/v1/order", true);
         httpRequest.setRequestHeader("Content-Type", "application/json");
-        console.log("{\"_id\":\"string\",\"orderName\":\"" + menu + "\",\"userId\":\"" + userId + "\",\"userName\":\"" + document.getElementById('userName').value + "\"}");
-        httpRequest.send("{\"_id\":\"string\",\"orderName\":\"" + menu + "\",\"userId\":\"" + userId + "\",\"userName\":\"" + document.getElementById('userName').value + "\"}");
+        console.log("{\"_id\":\"string\",\"orderName\":\"" + menu + "\",\"userId\":\"string\",\"userName\":\"" + document.getElementById('userName').value + "\"}");
+        httpRequest.send("{\"_id\":\"string\",\"orderName\":\"" + menu + "\",\"userId\":\"string\",\"userName\":\"" + document.getElementById('userName').value + "\"}");
     }
 
 
-    function checkMember() {
-        ordered.innerHTML = keep.innerHTML +  "<div class='section_x-slide-area'><ul><div class='notice'><div class='section_y-slide-area'><span id='status_text'>준비중☕️🐈</span><br></div></div></ul></div>";;
-        keep.innerHTML = "<br>";
-
-        var httpRequest = new XMLHttpRequest();
-
-        httpRequest.onreadystatechange = function () {
-            if (httpRequest.readyState == XMLHttpRequest.DONE && httpRequest.status == 200) {
-                var json = JSON.parse(httpRequest.responseText);
-
-                for (var result in json.resultVO) {
-                    if (json.resultVO[result].userName == document.getElementById('userName').value) {
-                        console.log(json.resultVO[result]._id);
-                        sendOrder(json.resultVO[result]._id)
-                    }
-                }
-            }
-        };
-
-        httpRequest.open("GET", "http://192.168.1.103:32016/api/v1/member", true);
-        httpRequest.setRequestHeader("Content-Type", "application/json");
-        httpRequest.send();
-
-    }
 
 
     function checkStatus() {
