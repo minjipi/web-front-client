@@ -48,7 +48,7 @@
 
     <div class="discount-title">
         <h2>주문내역</h2>
-        <span>전체보기<i class="icon-angle-right"></i></span>
+        <span></span>
     </div>
     <div id="ordered">
         <br>
@@ -88,33 +88,19 @@
 <section>
     <div class="discount-title">
         <h2>장바구니</h2>
+        <span></span>
     </div>
     <div id="keep">
         <br>
     </div>
     <div>
-        <span>전체보기<i class="icon-angle-right"></i></span>
-        <button id="order" class="order-button" onclick="sendOrder()">주문하기</button>
+
+        <button id="order" class="order-button" onclick="checkMember()">주문하기</button>
     </div>
 </section>
 
 
-<!--<footer>-->
-<!--    <div class="policy-area">-->
-<!--        <span>사업자정보확인</span>-->
-<!--        <span>이용약관</span>-->
-<!--        <span>전자금융거래이용약관</span>-->
-<!--        <span class="privacy-policy">개인정보처리방침</span>-->
-<!--    </div>-->
-<!--</footer>-->
 
-<!--<nav>-->
-<!--    <a href="#"><i class="icon-home active-navigator"></i>홈</a>-->
-<!--    <a href="#"><i class="icon-search"></i>검색</a>-->
-<!--    <a href="#"><i class="icon-heart"></i>내 메뉴</a>-->
-<!--    <a href="#"><i class="icon-list"></i>주문내역</a>-->
-<!--    <a href="#"><i class="icon-smile"></i>my</a>-->
-<!--</nav>-->
 </body>
 
 <script>
@@ -122,6 +108,7 @@
     let ordered = document.getElementById("ordered");
     let order_id="";
     let menu = "menu";
+    let tid;
     iceamericano_btn = document.getElementById('iceamericano');
     latte_btn = document.getElementById('latte');
     ade_btn = document.getElementById('ade');
@@ -187,7 +174,7 @@
             if (httpRequest.readyState == XMLHttpRequest.DONE && httpRequest.status == 200) {
                 var json = JSON.parse(httpRequest.responseText);
                 order_id = json.resultVO._id;
-                checkStatus();
+                tid=setInterval(checkStatus,3000);
             }
         };
         httpRequest.open("POST", "http://www.minzy-pansy.kro.kr:32016/api/v1/order", true);
@@ -211,6 +198,7 @@
                     if (json.resultVO[result].orderId == order_id) {
                         console.log(json.resultVO[result].statusName);
                         if(json.resultVO[result].statusName==='DONE') {
+                            clearInterval(tid);
                             document.getElementById("status_text").innerText="완성☕️🐈";
                         }
                     }
